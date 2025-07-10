@@ -1,0 +1,62 @@
+{
+  "source_schema": "BankingRewardsFees_Old",
+  "target_schema": "BankingRewardsFees_New",
+  "tables": [
+    {
+      "source_table": "Accounts",
+      "target_table": "Customers",
+      "columns": [
+        {
+          "source_column": "customer_name",
+          "target_column": "name"
+        },
+        {
+          "source_column": "customer_tier",
+          "target_column": "tier"
+        },
+        {
+          "source_column": "created_at",
+          "target_column": "created_at"
+        },
+        {
+          "source_column": "updated_at",
+          "target_column": "updated_at"
+        }
+      ],
+      "note": "Old 'Accounts' table columns split out to 'Customers'."
+    },
+    {
+      "source_table": "Accounts",
+      "target_table": "Accounts",
+      "columns": [
+        {
+          "source_column": "account_id",
+          "target_column": "account_id"
+        },
+        {
+          "source_column": "balance",
+          "target_column": "balance"
+        },
+        {
+          "source_column": "created_at",
+          "target_column": "created_at"
+        },
+        {
+          "source_column": "updated_at",
+          "target_column": "updated_at"
+        }
+      ],
+      "note": "New 'Accounts' now references Customers via customer_id foreign key instead of duplicating name/tier."
+    }
+  ],
+  "deprecated_columns": [
+    "monthly_fees",
+    "monthly_rewards",
+    "legacy_flag"
+  ],
+  "deprecated_stored_procedures": [
+    "CalculateReferralBonus",
+    "LegacyAccountCleanup"
+  ],
+  "business_logic_notes": "Business logic for fee and reward calculations will move to Python microservices and no longer be stored or updated in SQL tables. Logic can be enhanced to support new data models."
+}

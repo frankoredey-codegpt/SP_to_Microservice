@@ -5,7 +5,7 @@ import mysql.connector
 from unittest.mock import patch, MagicMock
 from datetime import datetime
 from decimal import Decimal
-from BankingRewardsFees_New.AWS_Lambda_Microservices.Account_Service import (
+from BankingRewardsFees_New.AWS_Lambda_Microservices.Account_Services import (
     convert_account_data,
     serialize_datetime,
     get_connection,
